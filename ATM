@@ -1,0 +1,131 @@
+import time as t
+def addrecord():
+    useraccount=input("Enter account number")
+    userpin=int(input("Enter PIN"))
+    username=input("Enter Username")
+    balance=float(input("Enter balance"))
+    str1=str(userpin)+"\t"+username+"\t"+str(useraccount)+"\t"+str(balance)+"\n"
+    f=open("account.txt","a")
+    f.write(str1)
+    f.close()
+def displayrecord():
+    useraccount=input("Enter Account Number")
+    f=open("account.txt","r")
+    L1=f.readlines()
+    for i in L1:
+        L2=i.split()
+        if(useraccount==L1[2]):
+            num=3
+            while num>0:
+                userpin=int(input("Enter PIN"))
+                if(int(L2[0])==userpin):
+                    print("------Successfull-----")
+                    break
+                num=num-1
+            else:
+                print("-------INCOREECT PIN--------")
+# userpin=5005
+# username="AKSH VATS"
+# newbalance=0
+# newpin=0
+# amt=0
+# userbalance=97500.0
+print("PLDC BANK".center(50))
+print("INSERT YOUR CARD")
+print("Welcome",username)
+print("SELECT AN OPTION".center(50))
+print("--> VIEW ACCOUNT BALANCE (PRESS 0)")
+print("CASH WITHDRAWL (PRESS 1) <--.".rjust(50))
+print("--> TRANSFER MONEY (PRESS 2)")
+print("DEPOSIT MONEY (PRESS 3) <--".rjust(50))
+print("--> CHANGE PIN (PRESS 4)")
+print("MINI ACCOUNT STATEMENT (PRESS 5) <--".rjust(50))
+print("--> FAST CASH WITHDRAWL (PRESS 6)")
+choice=int(input("Enter option"))
+match choice:
+    case 0:
+        PIN=int(input("Enter you PIN"))
+        if PIN==userpin:
+            print("Please Wait....")
+            t.sleep(1)
+            print("Your Account Balance is:",userbalance)
+        else:
+            print("Incorrect PIN")
+    case 1:
+        PIN1=int(input("Enter PIN"))
+        if PIN1==userpin:
+            amt=int(input("Enter Amount"))
+            if amt<userbalance:
+                print("Please Wait....")
+                t.sleep(1)
+                print("Please Collect your Cash")
+                newbalance=userbalance-amt
+            else:
+                print("Insufficient Balance")
+                
+        else:
+            print("Incorrect PIN")
+    case 2:
+        amt2=int(input("Enter Amount to transfer"))
+        PIN2=int(input("Enter PIN"))
+        if PIN2==userpin:
+            print("Please Wait....")
+            if amt2<userbalance:
+                acc=int(input("Enter account number to transfer"))
+                name=str(input("Enter name of account holder"))
+                t.sleep(2)
+                print("Successfully Transferred to",name,"with account number",acc)
+            else:
+                print("Insufficient Balance")
+                print("Enter Correct Amount")
+        else:
+            print("Incorrect PIN")
+    case 3:
+        amt3=int(input("Enter amount to deposit"))
+        PIN3=int(input("Enter PIN"))
+        if PIN3==userpin:
+            print("Please Wait")
+            if amt3<newbalance:
+                print("Deposit Successfull")
+        else:
+            print("Incorrect PIN")
+    case 4:
+        PIN4=int(input("Please Enter old PIN"))
+        if PIN4==userpin:
+            newpin=int(input("Enter New PIN"))
+            print("Please Wait....")
+            t.sleep(1)
+            print("New PIN set Successfully")
+        else:
+            print("Incorrect PIN")
+    case 5:
+        PIN5=int(input("Enter PIN"))
+        if PIN5==newpin:
+            print("Printing mini statement")
+            print("Please Wait....")
+        else:
+            print("Incorrect PIN")
+    case 6:
+        PIN6=int(input("Enter PIN"))
+        print("Your Last withdrawl amount was",amt)
+        if PIN6==newpin:
+            print("Please Wait....")
+            t.sleep(1)
+            print("Please Collect Cash")
+        else:
+            print("Incorrect PIN")
+    case default:
+        print("Press Correct Option")
+#How to overwrite old PIN
+
+
+    
+
+
+
+
+        
+
+
+    
+
